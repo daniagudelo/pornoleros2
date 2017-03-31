@@ -16,7 +16,7 @@ class PagesTest < ActionDispatch::IntegrationTest
   end
   
   test "should get dashboard" do
-    get pages_dashboard_url
+    get dashboard_url
     assert_response :success
   end
 end

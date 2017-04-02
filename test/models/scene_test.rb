@@ -3,7 +3,13 @@ require 'test_helper'
 class SceneTest < ActiveSupport::TestCase
   
   def setup
-    @scene = Scene.new(title: "Scene Title", description: "Scene Description")
+    @user = User.create!(username: "username", email: "email@example.com")
+    @scene = @user.scenes.build(title: "Scene Title", description: "Scene Description")
+  end
+  
+  test "scene without user should be invalid" do
+    @scene.user_id = nil
+    assert_not @scene.valid?
   end
   
   test "scene should be valid" do

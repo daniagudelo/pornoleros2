@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   root "pages#home"
   get 'pages/home', to: 'pages#home'
   get '/dashboard', to: 'pages#dashboard'
+  get '/scenes', to: 'scenes#index'
+  
+  resources :scenes
 end

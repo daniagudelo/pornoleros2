@@ -1,6 +1,7 @@
+<%= render 'layouts/sidenav' %>
 <% if @scene.errors.any? %>
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-4">
       <div class="panel">
         <h2 class="panel-title">
           <%= pluralize(@scene.errors.count, "error") %> 
@@ -19,7 +20,7 @@
 <% end %>
 
 <div class= "row">
-  <div class="col-md-12">
+  <div class="col-md-10 col-md-offset-2">
     <%= form_for(@scene, :html => {class: "form-horizontal", role: "form"}) do |scene| %>
       <div class="form-group">
         <div class="control-label col-md-2">

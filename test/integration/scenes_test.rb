@@ -17,8 +17,39 @@ class ScenesTest < ActionDispatch::IntegrationTest
   test "should get the scenes listing" do
     get scenes_path
     assert_template 'scenes/index'
+    assert_select "a[href=?]", scene_path(@scene), text: @scene.title
+    assert_select "a[href=?]", scene_path(@scene2), text: @scene2.title
+  end
+  
+  test "should get scenes show" do
+    get scene_path(@scene)
+    assert_template 'scenes/show'
     assert_match @scene.title, response.body
-    assert_match @scene2.title, response.body
+    assert_match @scene.description, response.body
+  end
+  
+  test "should create new valid scene" do
+    get new_scene_path
+    assert 'scenes/new'
+    title_of_scene = "Scene title"
+    description_of_scene = "Scene description"
+    assert_difference 'Scene.count' do
+      post scenes_path, params: { scene: { title: title_of_scene, description: description_of_scene } }
+    end
+    follow_redirect!
+    assert_match title_of_scene.capitalize, response.body
+    assert_match description_of_scene, response.body
+  end
+  
+  test "reject invalid scene submission" do
+    get new_scene_path
+    assert_template 'scenes/new'
+    assert_no_difference 'Scene.count' do
+      post scenes_path, params: { scene: { title: nil, description: nil } }
+    end
+    assert_template 'scenes/new'
+    assert_select 'h2.panel-title'
+    assert_select 'div.panel-body'
   end
   
 end

@@ -1,4 +1,7 @@
-body { padding-top: 70px; }
+body { 
+  padding-top: 70px; 
+  
+}
 
 #logo {
   float: left;
@@ -13,6 +16,10 @@ body { padding-top: 70px; }
   color: #fff;
   text-decoration: none;
 }  
+
+.navbar {
+  background-color: #2e353d;
+}
 
 .nav-side-menu {
   overflow: auto;

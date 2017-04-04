@@ -1,0 +1,52 @@
+<% if @scene.errors.any? %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel">
+        <h2 class="panel-title">
+          <%= pluralize(@scene.errors.count, "error") %> 
+          prohibited this <%= @scene.class %> from being saved.
+        </h2>
+        <div class="panel-body">
+            <ul>
+              <%= @scene.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class= "row">
+  <div class="col-md-12">
+    <%= form_for(@scene, :html => {class: "form-horizontal", role: "form"}) do |scene| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= scene.label :title %>
+        </div>
+        <div class="col-md-8">
+          <%= scene.text_field :title, class: "form-control", placeholder: "Title of the scene", autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= scene.label :description %>
+        </div>
+        <div class="col-md-8">
+          <%= scene.text_area :description, rows: 10, class: "form-control", placeholder: "Scene description" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <%= scene.submit class: "btn btn-primary btn-lg btn-xlarge" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-4 col-md-offset-4">
+      [ <%= link_to "Cancel request and return to scenes listing", scenes_path %> ]
+    </div>
+  </div>
+</div>
+
+  

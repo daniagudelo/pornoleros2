@@ -4,6 +4,10 @@ class ScenesController < ApplicationController
     @scenes = Scene.all
   end
   
+  def listing
+    @scenes = Scene.all
+  end
+  
   def show
     @scene = Scene.find(params[:id])
   end
@@ -21,6 +25,26 @@ class ScenesController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def edit
+    @scene = Scene.find(params[:id])
+  end
+  
+  def update
+    @scene = Scene.find(params[:id])
+    if @scene.update(scene_params)
+      flash[:success] = "Scene was successfully updated!"
+      redirect_to scene_path(@scene)
+    else
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    @scene = Scene.find(params[:id]).destroy
+    flash[:success] = "Scene deleted successfully!"
+    redirect_to listing_path
   end
   
   private

@@ -51,5 +51,4 @@ class ScenesTest < ActionDispatch::IntegrationTest
     assert_select 'h2.panel-title'
     assert_select 'div.panel-body'
   end
-  
 end

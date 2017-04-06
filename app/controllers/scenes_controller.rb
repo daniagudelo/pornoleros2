@@ -1,4 +1,5 @@
 class ScenesController < ApplicationController
+  before_action :set_scene, only: [:show, :edit, :update]
   
   def index
     @scenes = Scene.all
@@ -9,7 +10,6 @@ class ScenesController < ApplicationController
   end
   
   def show
-    @scene = Scene.find(params[:id])
   end
   
   def new
@@ -28,11 +28,9 @@ class ScenesController < ApplicationController
   end
   
   def edit
-    @scene = Scene.find(params[:id])
   end
   
   def update
-    @scene = Scene.find(params[:id])
     if @scene.update(scene_params)
       flash[:success] = "Scene was successfully updated!"
       redirect_to scene_path(@scene)
@@ -48,6 +46,10 @@ class ScenesController < ApplicationController
   end
   
   private
+  
+  def set_scene
+    @scene = Scene.find(params[:id])
+  end
   
   def scene_params
     params.require(:scene).permit(:title, :description)

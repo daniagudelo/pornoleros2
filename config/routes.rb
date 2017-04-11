@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'pages/home', to: 'pages#home'
   get '/dashboard', to: 'pages#dashboard'
   get '/listing', to: 'scenes#listing'
+  get '/signup', to: 'users#new'
+  
+  resources :users, except: [:new]
   
   resources :scenes
 end

@@ -3,7 +3,7 @@ require 'test_helper'
 class ScenesDeleteTest < ActionDispatch::IntegrationTest
   
   def setup
-    @user = User.create!(username: "Mashrur", email: "mashrur@example.com")
+    @user = User.create!(username: "Mashrur", email: "mashrur@example.com", password: "password", password_confirmation: "password")
     @scene = Scene.create(title: "First scene title", description: "Description of the scene", user: @user)
   end
   

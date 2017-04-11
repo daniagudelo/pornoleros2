@@ -1,0 +1,68 @@
+<% if @user.errors.any? %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-4">
+      <div class="panel">
+        <h2 class="panel-title">
+          <%= pluralize(@user.errors.count, "error") %> 
+          prohibited this <%= @user.class %> from being saved.
+        </h2>
+        <div class="panel-body">
+            <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<h1 align = "center">Sign Up</h1>
+</br>
+<div class= "row">
+  <div class="col-md-12">
+    <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |user| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= user.label :username %>
+        </div>
+        <div class="col-md-8">
+          <%= user.text_field :username, class: "form-control", placeholder: "Type your username", autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= user.label :email %>
+        </div>
+        <div class="col-md-8">
+          <%= user.email_field :email, class: "form-control", placeholder: "Enter your email" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= user.label :password %>
+        </div>
+        <div class="col-md-8">
+          <%= user.password_field :password, class: "form-control", placeholder: "Choose a password" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= user.label :password_confirmation, "Confirm password" %>
+        </div>
+        <div class="col-md-8">
+          <%= user.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <%= user.submit "Sign Up", class: "btn btn-primary btn-lg btn-xlarge" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-4 col-md-offset-4">
+      [ <%= link_to "Cancel request and return to scenes listing", scenes_path %> ]
+    </div>
+  </div>
+</div>

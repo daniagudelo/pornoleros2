@@ -3,7 +3,8 @@ require 'test_helper'
 class SceneTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.create!(username: "username", email: "email@example.com")
+    @user = User.create!(username: "username", email: "email@example.com",
+                          password: "password", password_confirmation: "password")
     @scene = @user.scenes.build(title: "Scene Title", description: "Scene Description")
   end
   

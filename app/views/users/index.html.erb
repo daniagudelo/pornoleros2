@@ -1,0 +1,17 @@
+<h1>Users List</h1>
+
+<% @users.each do |user| %>
+  <div class="row">
+    <div class="col-md-2">
+      <section class="center">
+        
+      </section>
+    </div>
+    <div class="col-md-8 well">
+      <h4><%= link_to user.username, user_path(user) %></h4>
+      <p>
+        <span class="quiet"><small>Registered <%= time_ago_in_words(user.created_at) %> ago</small></span>
+      </p>
+    </div>
+  </div>
+<% end %>

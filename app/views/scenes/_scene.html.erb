@@ -1,0 +1,16 @@
+<% obj.each do |scene| %>
+  <div class="row">
+    <div class="col-md-2">
+      <section class="center">
+        
+      </section>
+    </div>
+    <div class="col-md-8 well">
+      <h4><%= link_to scene.title, scene_path(scene) %></h4>
+      <p><%= truncate(scene.description, length: 150) %></p>
+      <p>
+        <span class="quiet"><small>Created <%= time_ago_in_words(scene.created_at) %> ago</small></span>
+      </p>
+    </div>
+  </div>
+<% end %>

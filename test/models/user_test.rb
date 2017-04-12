@@ -70,4 +70,13 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "x" * 4
     assert_not @user.valid?
   end
+  
+  test "associated scenes should be destroyed" do
+    @user.save
+    @user.scenes.create!(title: "Destroy test", description: "test description")
+    assert_difference 'Scene.count', -1 do
+      @user.destroy
+    end
+  end
+  
 end

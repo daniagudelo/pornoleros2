@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def new
@@ -34,6 +34,13 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:danger] = "User and associated scenes have been deleted!"
+    redirect_to users_path
   end
   
   private

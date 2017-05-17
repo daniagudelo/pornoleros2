@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :scenes, dependent: :destroy
   
   before_save { self.email = email.downcase }
-  validates :username, presence: true, length: { minimum: 3, maximum: 30}
+  validates :username, presence: true, length: { minimum: 3, maximum: 30},
+                    uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { minimum: 3, maximum: 255},
                     format: { with: VALID_EMAIL_REGEX },

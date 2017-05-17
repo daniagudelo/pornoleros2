@@ -9,6 +9,7 @@ class ScenesEditTest < ActionDispatch::IntegrationTest
   end
   
   test "reject invalid scene update" do
+    sign_in_as(@user, "password")
     get edit_scene_path(@scene)
     assert_template 'scenes/edit'
     patch scene_path(@scene), params:  { scene: { title: " ", description: "some description" } }
@@ -18,6 +19,7 @@ class ScenesEditTest < ActionDispatch::IntegrationTest
   end
   
   test "successfully update scene" do
+    sign_in_as(@user, "password")
     get edit_scene_path(@scene)
     assert_template 'scenes/edit'
     updated_scene_title = "Updated title"

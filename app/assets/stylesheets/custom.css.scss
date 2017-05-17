@@ -3,6 +3,10 @@ body {
   
 }
 
+#main {
+  padding-left: 300px;
+}
+
 #logo {
   float: left;
   font-size: 1.7em;
@@ -157,13 +161,13 @@ body {
     line-height: 50px !important;
   }
 }
-@media (min-width: 767px) {
+@media (min-width: 500px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
   #main {
   	width:calc(100% - 300px);
-  	float: right;
+  	display: block;
   }
 }
 @import "bootstrap-sprockets";

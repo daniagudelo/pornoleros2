@@ -3,9 +3,9 @@ require 'test_helper'
 class UsersIndexTest < ActionDispatch::IntegrationTest
   
   def setup
-    @user = User.create!(username: "Mashrur", email: "mashrur@example.com",
+    @user = User.create!(username: "peeter", email: "peeter@example.com",
                           password: "password", password_confirmation: "password")
-    @user2 = User.create!(username: "Mashrur2", email: "mashrur2@example.com",
+    @user2 = User.create!(username: "peeter2", email: "peer2@example.com",
                           password: "password", password_confirmation: "password")
   end
   
@@ -22,6 +22,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
   end
   
   test "should delete a user" do
+    sign_in_as(@user2, "password")
     get users_path
     assert_template 'users/index'
     assert_difference 'User.count', -1 do

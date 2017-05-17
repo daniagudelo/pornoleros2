@@ -8,6 +8,7 @@ class ScenesDeleteTest < ActionDispatch::IntegrationTest
   end
   
   test "successfully delete a scene" do
+    sign_in_as(@user, "password")
     get listing_path
     assert_template 'scenes/listing'
     assert_select 'a[href=?]', scene_path(@scene), text: 'Delete'

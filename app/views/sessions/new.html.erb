@@ -1,0 +1,28 @@
+<h1 align="center">Log in</h1>
+
+<%= form_for(:session,  :html => {class: "form-horizontal", role: "form"}, url: login_path) do |user| %>
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= user.label :email %>
+      </div>
+      <div class="col-md-8">
+        <%= user.email_field :email, class: "form-control", placeholder: "Enter your email" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="control-label col-md-2">
+        <%= user.label :password %>
+      </div>
+      <div class="col-md-8">
+        <%= user.password_field :password, class: "form-control", placeholder: "Enter your password" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <%= user.submit "Log In", class: "btn btn-primary btn-lg btn-xlarge" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-md-4 col-md-offset-4 center">
+    [ <%= link_to "Don't have an account? Sign up now!", signup_path %> ]
+  </div>

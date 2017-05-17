@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersShowTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = User.create!(username: "Mashrur", email: "mashrur@example.com",
+    @user = User.create!(username: "Mashrur2", email: "mashrur@example.com",
                           password: "password", password_confirmation: "password")
     @scene = Scene.create(title: "First scene title", description: "Description of the scene", user: @user)
     @scene2 = @user.scenes.build(title: "Second scene title", description: "Description of the second scene")

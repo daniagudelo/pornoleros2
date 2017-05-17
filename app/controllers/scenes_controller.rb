@@ -1,5 +1,7 @@
 class ScenesController < ApplicationController
-  before_action :set_scene, only: [:show, :edit, :update]
+  before_action :set_scene, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
     @scenes = Scene.paginate(page: params[:page], per_page: 16)
@@ -7,6 +9,7 @@ class ScenesController < ApplicationController
   
   def listing
     @scenes = Scene.all
+    redirect_to scenes_path if !logged_in?
   end
   
   def show
@@ -18,7 +21,7 @@ class ScenesController < ApplicationController
   
   def create
     @scene = Scene.new(scene_params)
-    @scene.user = User.first
+    @scene.user = current_user
     if @scene.save
       flash[:success] = "Scene was created successfully"
       redirect_to scene_path(@scene)
@@ -46,6 +49,13 @@ class ScenesController < ApplicationController
   end
   
   private
+  
+  def require_same_user
+    if current_user != @scene.user
+      flash[:notice] = "You can only edit or delete your own scenes"
+      redirect_to scenes_path
+    end
+  end
   
   def set_scene
     @scene = Scene.find(params[:id])

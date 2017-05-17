@@ -3,7 +3,7 @@ require 'test_helper'
 class ScenesTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = User.create!(username: "Mashrur", email: "mashrur@example.com",
+    @user = User.create!(username: "peeter", email: "peeter@example.com",
                           password: "password", password_confirmation: "password")
     @scene = Scene.create(title: "First scene title", description: "Description of the scene", user: @user)
     @scene2 = @user.scenes.build(title: "Second scene title", description: "Description of the second scene")
@@ -30,6 +30,7 @@ class ScenesTest < ActionDispatch::IntegrationTest
   end
   
   test "should create new valid scene" do
+    sign_in_as(@user, "password")
     get new_scene_path
     assert 'scenes/new'
     title_of_scene = "Scene title"
@@ -43,6 +44,7 @@ class ScenesTest < ActionDispatch::IntegrationTest
   end
   
   test "reject invalid scene submission" do
+    sign_in_as(@user, "password")
     get new_scene_path
     assert_template 'scenes/new'
     assert_no_difference 'Scene.count' do
